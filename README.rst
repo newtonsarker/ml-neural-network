@@ -23,15 +23,36 @@ Neural network lab
 * Documentation: https://ml-neural-network.readthedocs.io.
 
 
-Features
+Project Setup
 --------
 
-* TODO
+### Create virtual environment
+https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#create-and-use-virtual-environments
+```bash
+# create
+python3.12 -m venv ./.venv
 
-Credits
--------
+# activate
+source ./.venv/bin/activate
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+# deactivate
+deactivate
+```
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+### Install cookiecutter and create a project template
+https://pypi.org/project/cookiecutter/
+```bash
+# install pipx
+pip install pipx
+
+# install cookiecutter
+pipx install cookiecutter
+
+# create project template
+pipx run cookiecutter gh:audreyfeldroy/cookiecutter-pypackage
+```
+
+### Install dependencies
+```bash
+pip install -r requirements_dev.txt
+```
