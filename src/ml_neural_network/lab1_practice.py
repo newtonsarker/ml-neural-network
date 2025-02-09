@@ -45,8 +45,75 @@ def neuron_with_linear_regression():
     print(f"numpy_output = {numpy_output}")
 
 
+def neuron_with_logistic_regression():
+    # training data
+    X_train = np.array([0., 1, 2, 3, 4, 5], dtype=np.float32).reshape(-1, 1)  # 2-D Matrix
+    Y_train = np.array([0,  0, 0, 1, 1, 1], dtype=np.float32).reshape(-1, 1)  # 2-D Matrix
+
+    # the Sequential model is a convenient means of creating multi-layer neural networks
+    model = Sequential(
+        [
+            tf.keras.layers.Dense(units=1, input_dim=1,  activation = 'sigmoid', name='L1')
+        ]
+    )
+
+    # show the the layers and the number of parameters in the model
+    model.summary()
+
+    # without a weight set a random weight will be generated
+    logistic_layer = model.get_layer('L1')
+    weights, bias = logistic_layer.get_weights()
+    print(f"weight = {weights}, bias = {bias}")
+    print(weights.shape, bias.shape)
+
+    # set new weight and bias
+    set_w = np.array([[2]])
+    set_b = np.array([-4.5])
+    logistic_layer.set_weights([set_w, set_b])
+    print(f"weight = {logistic_layer.get_weights()}")
+
+    # reshaped training data
+    reshaped_training_data = X_train[0].reshape(1, 1)
+    print(f"training data = {reshaped_training_data}")
+
+    # compute tensorflow activation
+    tensorflow_activation = model.predict(reshaped_training_data)
+    print(f"tensorflow_activation = {tensorflow_activation}")
+
+    # compute numpy prediction
+    numpy_prediction = sigmoidnp(np.dot(set_w,X_train[0].reshape(1, 1)) + set_b)
+    print(f"numpy_prediction = {numpy_prediction}")
+
+
+def sigmoidnp(z):
+    """
+    Compute the sigmoid of z
+
+    Parameters
+    ----------
+    z : array_like
+        A scalar or numpy array of any size.
+
+    Returns
+    -------
+     g : array_like
+         sigmoid(z)
+    """
+    z = np.clip(z, -500, 500)           # protect against overflow
+    g = 1.0 / ( 1.0 + np.exp(-z) )
+
+    return g
+
 def run():
+    print("=================================================================")
+    print("==================== Neuron with Linear Regression ==============")
+    print("=================================================================")
     neuron_with_linear_regression()
+
+    print("=====================================================================")
+    print("==================== Neuron with Logistic Regression ================")
+    print("=====================================================================")
+    neuron_with_logistic_regression()
 
 
 if __name__ == "__main__":
