@@ -25,3 +25,8 @@ pipx install cookiecutter
 # create project template
 pipx run cookiecutter gh:audreyfeldroy/cookiecutter-pypackage
 ```
+
+## Install dependencies
+```bash
+pip install -r requirements_dev.txt
+```

@@ -3,22 +3,17 @@
 """Tests for `ml_neural_network` package."""
 
 import pytest
+import sys
+import os
 
+# Add the src directory to the Python path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
 
-from ml_neural_network import ml_neural_network
+from ml_neural_network.ml_neural_network import add_numbers
 
-
-@pytest.fixture
-def response():
-    """Sample pytest fixture.
-
-    See more at: http://doc.pytest.org/en/latest/fixture.html
-    """
-    # import requests
-    # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
-
-
-def test_content(response):
-    """Sample pytest test function with the pytest fixture as an argument."""
-    # from bs4 import BeautifulSoup
-    # assert 'GitHub' in BeautifulSoup(response.content).title.string
+def test_add_numbers():
+    """Test the add_numbers function."""
+    assert add_numbers(1, 2) == 3
+    assert add_numbers(-1, 1) == 0
+    assert add_numbers(0, 0) == 0
+    assert add_numbers(1.5, 2.5) == 4.0
