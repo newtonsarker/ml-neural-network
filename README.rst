@@ -28,6 +28,7 @@ Project Setup
 
 ### Create virtual environment
 https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#create-and-use-virtual-environments
+
 ```bash
 # create
 python3.12 -m venv ./.venv
